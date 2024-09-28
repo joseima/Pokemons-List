@@ -6,6 +6,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { usePokemons } from "../hooks/usePokemons";
+import { Pokemon } from "../types";
 import { AnimatedPokemonCard } from "./PokemonCard";
 
 export const Main: React.FC = () => {
@@ -24,7 +25,7 @@ export const Main: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <FlatList
+      <FlatList<Pokemon>
         data={pokemons}
         numColumns={3}
         keyExtractor={(pokemon) => pokemon.name}

@@ -12,13 +12,11 @@ export const usePokemons = () => {
   useEffect(() => {
     const fetchAndStorePokemons = async () => {
       try {
-        // Verificar si hay datos en caché
         const storedData = storage.getString("pokemons");
         if (storedData) {
           setPokemons(JSON.parse(storedData));
           setLoading(false);
         } else {
-          // Si no hay, hacer fetch y almacenar los datos
           const fetchedPokemons = await fetchPokemons();
           setPokemons(fetchedPokemons);
           storage.set("pokemons", JSON.stringify(fetchedPokemons));

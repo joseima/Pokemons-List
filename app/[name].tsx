@@ -2,11 +2,12 @@ import { StyleSheet, Text, View, Image, ActivityIndicator } from "react-native";
 import { Link, useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
 import { usePokemons } from "../hooks/usePokemons";
+import { Pokemon } from "../types";
 
 export default function Detail() {
-  const { name } = useLocalSearchParams();
+  const { name } = useLocalSearchParams<{ name: string }>();
   const { pokemons } = usePokemons();
-  const [pokemon, setPokemon] = useState(null);
+  const [pokemon, setPokemon] = useState<Pokemon | null>(null);
 
   useEffect(() => {
     const selectedPokemon = pokemons.find((pokemon) => pokemon.name === name);

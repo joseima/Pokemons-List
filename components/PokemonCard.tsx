@@ -1,7 +1,18 @@
 import { useEffect, useRef } from "react";
 import { View, StyleSheet, Text, Image, Animated } from "react-native";
 import { Link } from "expo-router";
-export function PokemonCard({ pokemon }) {
+import { Pokemon } from "../types";
+
+interface PokemonCardProps {
+  pokemon: Pokemon;
+}
+
+interface AnimatedPokemonCardProps {
+  pokemon: Pokemon;
+  index: number;
+}
+
+export function PokemonCard({ pokemon }: PokemonCardProps) {
   return (
     <View key={pokemon.name} style={styles.card}>
       <Image source={{ uri: pokemon.image }} style={styles.image} />
@@ -19,7 +30,10 @@ export function PokemonCard({ pokemon }) {
   );
 }
 
-export function AnimatedPokemonCard({ pokemon, index }) {
+export function AnimatedPokemonCard({
+  pokemon,
+  index,
+}: AnimatedPokemonCardProps) {
   const opacity = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
